@@ -13,9 +13,7 @@ arq = '.jpg'
 
 l = os.listdir(path)
 
-# exemplo alterado de  EX_10.5.py para 10_5.py
 for nome in l:
-    # alterar conforme sua necessidade de geração de nomes e layout de arquivos
     novo_nome = str(pos) + arq
     
     try:
