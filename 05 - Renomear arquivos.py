@@ -34,11 +34,6 @@ for nome in l:
     #print(nome)
     #print(novo_nome)
     
-    '''dados = str(nome).split(".")
-    numero = dados[0].split("(")[1]
-    subnumero = dados[1]
-    novo_nome = numero + "_" + subnumero + ".py"'''
-    
     
     
     
