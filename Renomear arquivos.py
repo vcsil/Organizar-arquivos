@@ -7,11 +7,18 @@ Created on Thu Feb 11 14:21:52 2021
 
 import os
 
-path_user = str(input("Path: ")).replace('\\', '/')
+path_user = str(input("Current path: ")).replace('\\', '/')
+ext_user = str(input("New extension [.xxx]: "))
+
+def get_first_extension(diret):
+    first_arq = os.listdir(path)[0][::-1]   # Pega o nome do arquivo invertido para pegar o último '.''
+    dot_position = first_arq.index('.')
+    ext = first_arq[:dot_position][::-1]
+    return '.' + ext
 
 pos_initial = 1
 path = path_user if path_user != '' else "./"
-arq = '.jpg'
+arq = ext_user if ext_user != '' else get_first_extension(path)
 
 l = os.listdir(path)
 
