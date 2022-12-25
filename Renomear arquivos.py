@@ -10,8 +10,8 @@ import os
 path_user = str(input("Current path: ")).replace('\\', '/')
 ext_user = str(input("New extension [.xxx]: "))
 
-def get_first_extension(diret):
-    first_arq = os.listdir(path)[0][::-1]   # Pega o nome do arquivo invertido para pegar o último '.''
+def get_first_extension(directory):
+    first_arq = os.listdir(directory)[0][::-1]   # Pega o nome do arquivo invertido para pegar o último '.''
     dot_position = first_arq.index('.')
     ext = first_arq[:dot_position][::-1]
     return '.' + ext
