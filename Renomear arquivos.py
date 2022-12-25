@@ -6,6 +6,7 @@ Created on Thu Feb 11 14:21:52 2021
 """
 
 import os
+from tqdm import tqdm
 
 path_user = str(input("Current path: ")).replace('\\', '/')
 ext_user = str(input("New extension [.xxx]: "))
