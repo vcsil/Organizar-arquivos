@@ -33,32 +33,45 @@ path = path_user if path_user != '' else "./"
 
 filename_list = os.listdir(path)
 
-def rename_file(filename_list, pos_initial, ext_user):
-    novo_nome = str(pos_initial) + ext_user
+def filter_filename(filename):
+    filename_reverse = filename[::-1]
+    dot_position = filename_reverse.index('.')
+    filename_pure = filename_reverse[dot_position+1:][::-1]
+    if '.' in filename_pure[:5]:
+        filename = filename.replace('feat.', 'feat')
+        filename_reverse = filename[::-1]
+        dot_position = filename_reverse.index('.')
+        filename_pure = filename_pure[dot_position:]
+    return filename_pure
+
+def rename_file(filename, pos_initial, ext_user):
+    global filename_list
+    
+    number = '0' + str(pos_initial) if pos_initial < 10 else str(pos_initial)
+    filename_filtered = filter_filename(filename)
+    
+    new_filename = number + ' - ' + filename_filtered + ext_user
     
     try:
-            #os.rename(path + '/' + filename, path + '/' + novo_nome )
-            pos_initial += 1
+            #os.rename(path + '/' + filename, path + '/' + new_filename )
+            print('\n' + new_filename)
+            return 
     except:
-        while novo_nome in filename_list:
-            indice = filename_list.index(novo_nome)
-            filename_list.pop(indice)
-            
-            pos_initial += 1
-            novo_nome = str(pos_initial) + ext_user
+        pos_initial += 1
+        print('=-=-'*10)
+        rename_file(filename, pos_initial, ext_user)
 
-        #os.rename(path + '/' + filename, path + '/' + novo_nome )
-
-
-    #print("arquivo " + filename + " alterado para " + novo_nome)
-    print(filename)
-    print(novo_nome)
-    exit()
+    #print("arquivo " + filename + " alterado para " + new_filename)
+    #print('\n' + filename)
+    #print(new_filename)
 
 if extension_file_user == "":
     for filename in tqdm(filename_list):
         extension_file_user = get_file_extension(filename)
-        rename_file(filename_list, 1, extension_file_user)
+        if extension_file_user != '.py':
+            rename_file(filename, pos_initial, extension_file_user)
+            pos_initial += 1
 else:
     for filename in tqdm(filename_list):
-        rename_file(filename_list, 1, extension_file_user)
+        rename_file(filename, pos_initial, extension_file_user)
+        pos_initial += 1
