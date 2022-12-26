@@ -38,6 +38,7 @@ def set_number(pos_initial, digits):
     number = '0'*digits + str(pos_initial)
     
     number_limit = eval('1' + '0'*(digits-1))
+    number = '0'+number if pos_initial < 10 else number
     
     return number[digits-1:] if pos_initial < number_limit else number[digits:]
 
@@ -49,6 +50,9 @@ def filter_filename(filename):
         filename = filename.replace('feat.', 'feat')
         dot_position = filename.index('.')
         filename_pure = filename_pure[dot_position+1:]
+    if ' - ' in filename_pure[:6]:
+        trace_position = filename_pure.index(' - ')
+        filename_pure = filename_pure[trace_position+3:]
     return filename_pure
 
 def rename_file(filename, pos_initial, ext_user, length_filename_list):
@@ -60,7 +64,7 @@ def rename_file(filename, pos_initial, ext_user, length_filename_list):
     new_filename = number + ' - ' + filename_filtered + ext_user
     
     try:
-            #os.rename(path + '/' + filename, path + '/' + new_filename )
+            os.rename(path + '/' + filename, path + '/' + new_filename )
             print('\n' + new_filename)
             return 
     except:
