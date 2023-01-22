@@ -6,6 +6,7 @@ Created on Thu Feb 11 14:21:52 2021
 """
 
 import os
+import random
 from tqdm import tqdm
 
 path_user = str(input("Current path: ")).replace('\\', '/')
@@ -16,6 +17,7 @@ try:
 except ValueError:
     use_old_name = bool(int(input("Use old name (0) or just number (1)?: ")))
 
+shuffle = bool(int(input("Shuffle (1) or no shuffle (0)?: ")))
 
 def get_file_extension(filename):
     filename_reverse = filename[::-1]
@@ -75,6 +77,10 @@ def rename_file(filename, pos_initial, ext_user, length_filename_list):
     #print("arquivo " + filename + " alterado para " + new_filename)
     #print('\n' + filename)
     #print(new_filename)
+
+if (shuffle):
+    random.shuffle(filename_list)
+    random.shuffle(filename_list)
 
 if extension_file_user == "":
     for filename in tqdm(filename_list):
