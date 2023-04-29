@@ -9,8 +9,14 @@ import os
 import random
 from tqdm import tqdm
 
+# Define path
 path_user = str(input("Current path: ")).replace('\\', '/')
+
+# Change the extension of all files
 extension_file_user = str(input("New extension [.xxx]: "))
+
+# If it’s just to remove the numbers from the name
+just_remove_number = bool(int(input("Just remove the number? NO [0] YES [1] ")))
 
 try:
     use_old_name = bool(int(input("Use old name (0) or just number (1)?: ")))
