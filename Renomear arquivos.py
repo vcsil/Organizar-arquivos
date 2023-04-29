@@ -39,13 +39,10 @@ filename_list = os.listdir(path)
 length_filename_list = len(list(str(len(filename_list))))
 
 
-def set_number(pos_initial, digits):
-    number = '0'*digits + str(pos_initial)
+def set_number(position, digits):
+    number = '{:0>{}}'.format(position, digits)
 
-    number_limit = eval('1' + '0'*(digits-1))
-    number = '0'+number if pos_initial < 10 else number
-
-    return number[digits-1:] if pos_initial < number_limit else number[digits:]
+    return number
 
 
 def filter_filename(filename):
@@ -62,10 +59,10 @@ def filter_filename(filename):
     return filename_pure
 
 
-def rename_file(filename, pos_initial, ext_user, length_filename_list):
+def rename_file(filename, position_file, ext_user, length_filename_list):
     global filename_list, path
 
-    number = set_number(pos_initial, length_filename_list)
+    number = set_number(position_file, length_filename_list)
     filename_filtered = filter_filename(filename)
 
     new_filename = number + ' - ' + filename_filtered + ext_user
@@ -75,9 +72,9 @@ def rename_file(filename, pos_initial, ext_user, length_filename_list):
         print('\n' + new_filename)
         return
     except:
-        pos_initial += 1
+        position_file += 1
         print('=-=-'*10)
-        rename_file(filename, pos_initial, ext_user)
+        rename_file(filename, position_file, ext_user)
 
     # print("arquivo " + filename + " alterado para " + new_filename)
     # print('\n' + filename)
