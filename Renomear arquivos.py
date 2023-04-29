@@ -33,18 +33,6 @@ def get_file_extension(filename):
     return '.' + ext
 
 
-def get_first_extension(directory):
-    first_arq = os.listdir(directory)[0]
-    return get_file_extension(first_arq)
-
-
-pos_initial = 1
-path = path_user if path_user != '' else "./"
-
-filename_list = os.listdir(path)
-length_filename_list = len(list(str(len(filename_list))))
-
-
 def set_number(position, digits):
     number = '{:0>{}}'.format(position, digits)
 
@@ -85,6 +73,13 @@ def rename_file(filename, position_file, ext_user, length_filename_list):
     # print("arquivo " + filename + " alterado para " + new_filename)
     # print('\n' + filename)
     # print(new_filename)
+
+
+pos_initial = 1
+path = path_user if path_user != '' else "./"
+
+filename_list = os.listdir(path)
+length_filename_list = len(list(str(len(filename_list))))
 
 
 if (shuffle):
